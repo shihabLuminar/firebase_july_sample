@@ -1,0 +1,125 @@
+{
+  "project_info": {
+    "project_number": "277597954919",
+    "firebase_url": "https://sample-project-74cd8-default-rtdb.firebaseio.com",
+    "project_id": "sample-project-74cd8",
+    "storage_bucket": "sample-project-74cd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:b9eb2a306d82daceb0c5c2",
+        "android_client_info": {
+          "package_name": "com.example.fcm_notificaiton_sample_april"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:dd8efa53f16e8727b0c5c2",
+        "android_client_info": {
+          "package_name": "com.example.firebas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:27d67fc3931b8bf5b0c5c2",
+        "android_client_info": {
+          "package_name": "com.example.firebase_july_sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:ea09d5d93016ec4cb0c5c2",
+        "android_client_info": {
+          "package_name": "com.example.firebase_june_sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:1e9dfbbb92ba86cdb0c5c2",
+        "android_client_info": {
+          "package_name": "com.example.one_signal_push_notificaiton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277597954919:android:7431551b02b40801b0c5c2",
+        "android_client_info": {
+          "package_name": "com.luminar.firebase_samle_may"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDgLQYicnhXIfIkub-pZSRj3jMO9NCUj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
