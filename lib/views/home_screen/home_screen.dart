@@ -11,12 +11,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
-  void _addItem() {}
-
-  void _editItem(int index) {
-    // _titleController.text = sampleData[index]['title'];
-    // _descriptionController.text = sampleData[index]['subtitle'];
+  void _editItem(int index,
+      {String? docId, String title = '', String description = ''}) {
+    _titleController.text = title;
+    _descriptionController.text = description;
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -44,6 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      context.read<HomeScreenController>().updateItem(
+                          id: docId.toString(),
+                          title: _titleController.text,
+                          description: _descriptionController.text);
                       Navigator.of(context).pop();
                     },
                     child: Text('Save'),
@@ -74,35 +78,66 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                TextField(
-                  controller: _titleController,
-                  decoration: InputDecoration(labelText: 'Item Name'),
-                ),
-                TextField(
-                  controller: _descriptionController,
-                  decoration: InputDecoration(labelText: 'Item Description'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        _titleController.clear();
-                        _descriptionController.clear();
-                      },
-                      child: Text('Cancel'),
+          Form(
+            key: formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      context.read<HomeScreenController>().uploadImage();
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
                     ),
-                    ElevatedButton(
-                      onPressed: _addItem,
-                      child: Text('Save'),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(labelText: 'Item Name'),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter Name';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _descriptionController,
+                    decoration: InputDecoration(labelText: 'Item Description'),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter description';
+                      }
+                      return null;
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          _titleController.clear();
+                          _descriptionController.clear();
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            context.read<HomeScreenController>().addItem(
+                                title: _titleController.text,
+                                description: _descriptionController.text);
+                            _titleController.clear();
+                            _descriptionController.clear();
+                          }
+                        },
+                        child: Text('Save'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -120,6 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       var currentItme =
                           snapshot.data!.docs[index]; // cocument item
                       return ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(currentItme['url']),
+                        ),
                         title: Text(currentItme['name']),
                         subtitle: Text(currentItme['des']),
                         trailing: Row(
@@ -127,7 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             IconButton(
                               icon: Icon(Icons.edit, color: Colors.green),
-                              onPressed: () => _editItem(index),
+                              onPressed: () => _editItem(index,
+                                  docId: currentItme.id,
+                                  title: currentItme['name'],
+                                  description: currentItme['des']),
                             ),
                             IconButton(
                                 icon: Icon(Icons.delete, color: Colors.red),
@@ -158,47 +199,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-// ListView.builder(
-//               padding: EdgeInsets.all(8.0),
-//               itemCount: sampleData.length,
-//               itemBuilder: (context, index) {
-//                 final item = sampleData[index];
-//                 return Card(
-//                   elevation: 4,
-//                   margin: EdgeInsets.symmetric(vertical: 8),
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                   ),
-//                   child: ListTile(
-//                     leading: CircleAvatar(
-//                       backgroundColor: Colors.blue[100],
-//                       child: Icon(
-//                         item['icon'],
-//                         color: Colors.blue,
-//                       ),
-//                     ),
-//                     title: Text(
-//                       item['title'],
-//                       style: TextStyle(
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
-//                     subtitle: Text(item['subtitle']),
-//                     trailing: Row(
-//                       mainAxisSize: MainAxisSize.min,
-//                       children: [
-//                         IconButton(
-//                           icon: Icon(Icons.edit, color: Colors.green),
-//                           onPressed: () => _editItem(index),
-//                         ),
-//                         IconButton(
-//                           icon: Icon(Icons.delete, color: Colors.red),
-//                           onPressed: () => _deleteItem(index),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
