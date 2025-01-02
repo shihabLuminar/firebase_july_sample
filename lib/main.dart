@@ -3,6 +3,7 @@ import 'package:firebase_july_sample/controller/home_screen_controller.dart';
 import 'package:firebase_july_sample/controller/login_screen_controller.dart';
 import 'package:firebase_july_sample/controller/registration_screen_controller.dart';
 import 'package:firebase_july_sample/firebase_options.dart';
+import 'package:firebase_july_sample/services/notification_services.dart';
 import 'package:firebase_july_sample/views/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,8 @@ Future<void> main(List<String> args) async {
       )
     ], child: const MyApp()),
   );
+
+  await NotificationService().registerPushNotificationHandler();
 }
 
 class MyApp extends StatelessWidget {
